@@ -1,3 +1,14 @@
+// Function to convert Unix timestamp to 12-hour time format with AM/PM
+function convertUnixTimestampToUTC(timestamp) {
+    const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${formattedHours}:${formattedMinutes} ${ampm}`;
+}
+
 
 const options = {
     method: 'GET',
@@ -13,6 +24,8 @@ const getWeather = (city) => {
         .then(response => response.json())
         .then((response) => {
 
+            const citySunriseUTC = convertUnixTimestampToUTC(response.sunrise);
+            const citySunsetUTC = convertUnixTimestampToUTC(response.sunset);
             console.log(response)
 
             // cloud_pct.innerHTML = response.cloud_pct
@@ -21,8 +34,8 @@ const getWeather = (city) => {
             humidity2.innerHTML = response.humidity
             max_temp.innerHTML = response.max_temp
             min_temp.innerHTML = response.min_temp
-            sunrise.innerHTML = response.sunrise
-            sunset.innerHTML = response.sunset
+            sunrise.innerHTML = citySunriseUTC
+            sunset.innerHTML = citySunsetUTC
             temp.innerHTML = response.temp
             temp2.innerHTML = response.temp
             wind_degrees.innerHTML = response.wind_degrees
