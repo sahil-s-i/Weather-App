@@ -1,13 +1,6 @@
-<<<<<<< Updated upstream
-# Weather-App
-
-
-WEATHER APP ...
-=======
 # Weather-App 🌦️
 
 Weather-App is a user-friendly web application that provides real-time weather information for cities around the world. It allows users to check temperature, humidity, wind speed, and more to plan their day effectively.
-
 
 
 ### Getting Started - 
@@ -30,12 +23,7 @@ Enter the name of the city you want to check the weather for and click "Search."
 - CSS
 - JavaScript
 - Bootstrap
+- API
 
 ### Contributing
 If you'd like to contribute to this project, please fork the repository and create a pull request.
-
-
-
-
-
->>>>>>> Stashed changes
