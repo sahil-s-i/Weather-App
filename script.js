@@ -18,38 +18,59 @@ const options = {
 };
 
 const getWeather = (city) => {
-    cityName.innerHTML = city;
+    // Check if the city is provided or not
+    if (!city) {
+        city = "Karnataka"; // Use the default city name if not provided
+    }
+
+
     fetch('https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=' + city, options)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                // Display an alert if the city is not found
+                // alert("City not found. Please enter a valid city name.");
+                throw new Error("City not found !!!!\nYou Have Entered a city name which does not exist hence, Enter a proper city name \nThank You .....");
+            }
+            return response.json();
+        })
         .then((response) => {
+            cityName.innerHTML = city;
 
             const citySunriseUTC = convertUnixTimestampToUTC(response.sunrise);
             const citySunsetUTC = convertUnixTimestampToUTC(response.sunset);
 
-            // cloud_pct.innerHTML = response.cloud_pct
-            feels_like.innerHTML = response.feels_like
-            humidity.innerHTML = response.humidity
-            humidity2.innerHTML = response.humidity
-            max_temp.innerHTML = response.max_temp
-            min_temp.innerHTML = response.min_temp
-            sunrise.innerHTML = citySunriseUTC
-            sunset.innerHTML = citySunsetUTC
-            temp.innerHTML = response.temp
-            temp2.innerHTML = response.temp
-            wind_degrees.innerHTML = response.wind_degrees
-            wind_speed.innerHTML = response.wind_speed
-            wind_speed2.innerHTML = response.wind_speed
+            // Update weather information
+            feels_like.innerHTML = response.feels_like;
+            humidity.innerHTML = response.humidity;
+            humidity2.innerHTML = response.humidity;
+            max_temp.innerHTML = response.max_temp;
+            min_temp.innerHTML = response.min_temp;
+            sunrise.innerHTML = citySunriseUTC;
+            sunset.innerHTML = citySunsetUTC;
+            temp.innerHTML = response.temp;
+            temp2.innerHTML = response.temp;
+            wind_degrees.innerHTML = response.wind_degrees;
+            wind_speed.innerHTML = response.wind_speed;
+            wind_speed2.innerHTML = response.wind_speed;
         })
-
-        .catch(err => console.log(err));
+        .catch(err => {
+            // Display an alert for other errors
+            alert(err.message);
+        });
 }
 
 submit.addEventListener("click", (e) => {
-    e.preventDefault()
-    getWeather(city.value)
-})
+    e.preventDefault();
+    const cityInput = city.value.trim();
+    if (cityInput) {
+        getWeather(cityInput);
+    } else {
+        alert("Please enter a city name.");
+    }
+});
 
-getWeather("Karnataka")
+// Initial weather data for the default city
+getWeather("Karnataka");
 
 
 // ! GADAG WEATHER
@@ -102,7 +123,6 @@ fetch('https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=Bengaluru', 
 
         const bengaluruSunriseUTC = convertUnixTimestampToUTC(response.sunrise);
         const bengaluruSunsetUTC = convertUnixTimestampToUTC(response.sunset);
-
 
         bengaluru_feels_like.innerHTML = response.feels_like
         bengaluru_humidity.innerHTML = response.humidity
