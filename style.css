@@ -11,3 +11,11 @@
     margin: 2px auto;
     width: 90%;
 }
+
+.logo {
+    margin-right: 1rem;
+}
+
+#cityName {
+    text-transform: capitalize;
+}
