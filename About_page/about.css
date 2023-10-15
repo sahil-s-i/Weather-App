@@ -1,0 +1,29 @@
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.para {
+    text-indent: 80px;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+ul,
+ol {
+    margin-left: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+.logo {
+    margin-right: 1rem;
+}
