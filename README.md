@@ -22,7 +22,7 @@ Enter the name of the city you want to check the weather for and click "Search."
 - CSS
 - JavaScript
 - Bootstrap
-- API
+- RapidAPI
 
 ### Contributing
 If you'd like to contribute to this project, please fork the repository and create a pull request.
