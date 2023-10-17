@@ -16,6 +16,10 @@
     margin-right: 1rem;
 }
 
+.navbar-brand {
+    cursor: default;
+}
+
 #cityName {
     text-transform: capitalize;
 }
